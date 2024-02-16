@@ -37,3 +37,6 @@ next-env.d.ts
 
 # Dev containters
 /.devcontainer
+
+# Github 
+/.github

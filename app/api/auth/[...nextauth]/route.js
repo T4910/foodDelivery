@@ -1,15 +1,16 @@
 import NextAuth from "next-auth"
 import { compare } from "bcryptjs"
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
+import { PrismaAdapter } from "@auth/db-adapter"
+// import { dbClient } from "@db/client"
 // import EmailProvider from "next-auth/providers/email";
 import Crendentials from "next-auth/providers/credentials"
 import Google from "next-auth/providers/google"
+import { db } from "@/lib/db"
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
 export const authOptions = {
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(db),
     secret: process.env.JWT_SECRET,
     session: {strategy: 'jwt'},
     callbacks:{
@@ -25,7 +26,7 @@ export const authOptions = {
       }),
       Crendentials({
         async authorize(credentials){
-          let user = await prisma.user.findFirst({where: {email: credentials.email}}) || await prisma.user.findFirst({where: {username: credentials.email}})
+          let user = await db.user.findFirst({where: {email: credentials.email}}) || await db.user.findFirst({where: {username: credentials.email}})
   
           if(!user) return null
           let similarPassword = await compare(credentials.password, user.password)        
