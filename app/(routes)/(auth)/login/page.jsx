@@ -9,7 +9,7 @@ export default function Page({}) {
         <Fields />
       </div>
       <div className="h-fit">
-        <Link href="#" className="text-end block mb-6">Forgot Password?</Link>
+        <Link href="#" className="text-end block mb-6 text-sm text-red-600">Forgot Password?</Link>
         <Button className="w-full font-bold p-6 rounded-xl">Login</Button>
         <Link className="block text-center my-3" href="/signup">Don't have an account? Create one</Link>
       </div>
