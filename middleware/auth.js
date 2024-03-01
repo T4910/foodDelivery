@@ -15,8 +15,7 @@ export const {
             return token;
         },
         async session({ session }){
-            const user = await getUserByID()
-            console.log('user:', session);
+            const user = await getUserByID();
             return session;
         }
     },

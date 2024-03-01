@@ -5,7 +5,7 @@ import Hero from './_components/hero'
 export default function AuthLayout({ children }) {
   return (
       <div className="flex flex-col h-[100dvh]">
-        <div className="h-[55dvh] flex flex-col">
+        <div className="h-[50dvh] flex flex-col">
           <Hero />
           <div className="flex justify-evenly py-4">
               <Link href="/login">Login</Link>
@@ -15,6 +15,6 @@ export default function AuthLayout({ children }) {
         <div className=" bg-slate-50 bg-opacity-10 px-8 pb-6 flex-grow">
           {children}
         </div>
-    </div>
+      </div>
   )
 }

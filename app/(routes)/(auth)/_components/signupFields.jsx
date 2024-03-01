@@ -1,23 +1,106 @@
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import Flash from "./formError"; 
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
+import { 
+    FormField,
+    FormControl,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form";
 
-const signUpFields = () => {
-  return (
-    <div className="flex flex-col justify-around h-full pb-6">
-        <div className="mb-2">
-            <Label htmlFor="email" className="text-muted-foreground text-xs font-semibold">Email Address</Label>
-            <Input className="placeholder:text-muted" variant="login" type="email" id="email" placeholder="Enter your Email" name="Email Address"/> 
-        </div>
-        <div className="mb-2">
-            <Label htmlFor="password" className="text-muted-foreground text-xs font-semibold">Password</Label>
-            <Input className="placeholder:text-muted" variant="login" type="password" id="password" placeholder="Enter your Password" name="Password"/>
-        </div>
-        <div className="mb-2">
-            <Label htmlFor="password" className="text-muted-foreground text-xs font-semibold">Confirm Password</Label>
-            <Input className="placeholder:text-muted" variant="login" type="password" id="password" placeholder="Enter your Password" name="Password"/>
-        </div>
-    </div>
-  )
-}
 
-export default signUpFields
+// import PasswordField from "./password";
+
+const signUpFields = ({flash: [flash], ...form}) => {
+    const [ showPassword, setShowPassword ] = useState(false);
+    const [ showConfirmPassword, setShowConfirmPassword ] = useState(false);
+
+    return (
+        <div className="flex flex-col justify-around h-full pb-6">
+            <Flash state={flash}/>
+            <FormField 
+                control={form.control}
+                name="email"
+                render = {({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-muted-foreground text-xs font-semibold">Email</FormLabel>
+                        <FormControl>
+                            <Input 
+                                {...field}
+                                placeholder="example@example.com"
+                                type="email"
+                                className="placeholder:text-muted m-0 px-3" 
+                                variant="login"
+                            />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+            <FormField 
+                control={form.control}
+                name="password"
+                render = {({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-muted-foreground text-xs font-semibold">Password</FormLabel>
+                        <FormControl>
+                            <div className="flex relative">
+                                <Input 
+                                    {...field}
+                                    className="placeholder:text-muted focus-visible:outline-black px-3" 
+                                    type={ showPassword ? "text" : "password" } 
+                                    placeholder="*******"
+                                    variant="login" 
+                                /> 
+                                <Button 
+                                    className="absolute right-0 text-muted-foreground"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    variant="ghost"
+                                    type="button"
+                                >
+                                    { showPassword ? <FaRegEyeSlash /> : <FaRegEye /> }
+                                </Button>
+                            </div>
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+            <FormField 
+                control={form.control}
+                name="cpassword"
+                render = {({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-muted-foreground text-xs font-semibold">Confirm Password</FormLabel>
+                        <FormControl>
+                            <div className="flex relative">
+                                <Input 
+                                    {...field}
+                                    className="placeholder:text-muted focus-visible:outline-black px-3" 
+                                    type={ showConfirmPassword ? "text" : "password" } 
+                                    placeholder="*******"
+                                    variant="login" 
+                                /> 
+                                <Button 
+                                    className="absolute right-0 text-muted-foreground"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    variant="ghost"
+                                    type="button"
+                                >
+                                    { showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye /> }
+                                </Button>
+                            </div>
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+        </div>
+    );
+};
+
+export default signUpFields;

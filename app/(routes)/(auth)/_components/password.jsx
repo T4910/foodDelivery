@@ -1,23 +1,30 @@
-'use client'
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
-const Password = () => {
+const Password = ( field ) => {
+    console.log("Password.jsx: ", field)
     const [ show, setShow ] = useState(false);
+
     return (
         <div className="flex relative">
             <Input 
-                className="placeholder:text-muted focus-visible:outline-black" 
-                variant="login" type={ show ? "text" : "password" } id="password" placeholder="Enter your password" name="password"
+                {...field}
+                className="placeholder:text-muted focus-visible:outline-black px-3" 
+                type={ show ? "text" : "password" } 
+                placeholder="********"
+                variant="login" 
             /> 
             <Button 
-                variant="ghost"
-                onClick={() => setShow(!show)}
-                type="button"
                 className="absolute right-0 text-muted-foreground"
-            >{ show ? "(%)" : "(O)" }</Button>
+                onClick={() => setShow(!show)}
+                variant="ghost"
+                type="button"
+            >
+                { show ? <FaRegEyeSlash /> : <FaRegEye /> }
+            </Button>
         </div>
     );
 };
