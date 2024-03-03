@@ -1,7 +1,7 @@
 import Credentials from "next-auth/providers/credentials"
 import bcyrpt from "bcryptjs"
 import { LoginSchema } from "@/middleware/schema";
-// import { getUserByName } from "./lib/getInfo";
+import { getUserByEmail } from "@/lib/getInfo";
 
 export default {
     providers: [
@@ -10,19 +10,16 @@ export default {
                 const checkedFields = LoginSchema.safeParse(credentials);
                 if(!checkedFields.success) return null;
 
-                const { username, password } = checkedFields.data;
+                const { email, password } = checkedFields.data;
 
-                const user = null; //await getUserByName(username);
-                // console.log('THE USER: ', user)
-                if(!user) return null;
+                const user = await getUserByEmail(email);
+                if(!user || !user.password) null
                 
                 const passwordMatch = await bcyrpt.compare(password, user.password);
-                user.info = {
-                    id: user.id,
-                    username: user.username,
-                    role: user.role
-                };
+                console.log(passwordMatch)
                 if(passwordMatch) return user;
+
+                return null;
             }
         })
     ]

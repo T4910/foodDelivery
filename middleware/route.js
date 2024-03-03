@@ -1,7 +1,6 @@
 export const AUTH = [
     "/login",
     "/signup",
-    "/cart"
 ];
 
 export const AUTHAPI = [

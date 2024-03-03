@@ -15,12 +15,12 @@ import {
 
 
 
-const loginFields = ({ flash: [flash], ...form}) => {
+const loginFields = ({ flash: [flash], isSubmitting, ...form}) => {
     const [ show, setShow ] = useState(false)
 
     return (
         <div className="flex flex-col justify-around h-full pb-6">
-            <Flash state={flash}/>
+            <Flash state={flash ?? {}}/>
             <FormField   
                 control={form.control}
                 name="email"
@@ -34,6 +34,7 @@ const loginFields = ({ flash: [flash], ...form}) => {
                                 type="email"
                                 className="placeholder:text-muted m-0 px-3" 
                                 variant="login"
+                                disabled={isSubmitting}
                             />
                         </FormControl>
                         <FormMessage />
@@ -58,7 +59,8 @@ const loginFields = ({ flash: [flash], ...form}) => {
                                     className="placeholder:text-muted focus-visible:outline-black px-3" 
                                     type={ show ? "text" : "password" } 
                                     placeholder="*******"
-                                    variant="login" 
+                                    variant="login"
+                                    disabled={isSubmitting} 
                                 /> 
                                 <Button 
                                     className="absolute right-0 text-muted-foreground"
