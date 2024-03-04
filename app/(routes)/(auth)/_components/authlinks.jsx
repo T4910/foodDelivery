@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 const authlinks = ({ href, children }) => {
     const pathname = usePathname()
     return (
-        <Link className={`p-3 ${(pathname === href) && 'border-b border-yellow-500'} font-semibold`} href={href}>{children}</Link>
+        <Link className={`p-3 ${(pathname === href) && 'border-b border-primary'} font-semibold`} href={href}>{children}</Link>
     )
 }
 

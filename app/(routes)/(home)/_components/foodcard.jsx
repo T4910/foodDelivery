@@ -11,21 +11,23 @@ import Link from "next/link"
 import Price from './price'
   
 
-const card = ({id, image, name, description, calories, price}) => {
+const card = ({id, image, name, description, calories, price, last}) => {
     return (
-        <Link className="w-min" href={`/view/${id}`}>
-            <Card className="w-48 rounded-md">
+        <Link className={`w-min  ${last && '!mr-7'}`} href={`/view/${id}`}>
+            <Card className="w-56 h-full rounded-md flex flex-col">
                 <Image className="w-full aspect-square object-cover rounded-t-md" src={image} alt={name} width={200} height={200} />
-                <CardHeader className="pb-3">
-                    <CardTitle>{name}</CardTitle>
-                    <CardDescription>{description}i</CardDescription>
-                </CardHeader>
-                <CardContent className="pb-4">
-                    <p className="text-sm text-red-600">🔥 {calories} calories</p>
-                </CardContent>
-                <CardFooter>
-                    <Price price={price} />
-                </CardFooter>
+                <div className="flex flex-col flex-grow mt-2">
+                    <CardHeader>
+                        <CardTitle>{name}</CardTitle>
+                        <CardDescription>{description}i</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-sm text-red-600">🔥 {calories} calories</p>
+                    </CardContent>
+                    <CardFooter>
+                        <Price price={price} />
+                    </CardFooter>
+                </div>
             </Card>
         </Link>
     )
