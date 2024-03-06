@@ -11,7 +11,7 @@ import {
 const pagination = () => {
   return (
     <>
-        <Pagination>
+        <Pagination className="bg-red-600">
         <PaginationContent>
             <PaginationItem>
                 <PaginationPrevious href="#" />

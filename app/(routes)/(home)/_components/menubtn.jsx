@@ -13,11 +13,11 @@ import {
 const menubtn = () => {
   return (
     <div>
-        <DropdownMenu className="left-7">
+        <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button className="p-1 px-2 text-black bg-white"><AlignLeft /></Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="relative left-7 top-2">
+            <DropdownMenuContent className="relative left-7 top-2 w-20">
                 <DropdownMenuLabel>Menu</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
