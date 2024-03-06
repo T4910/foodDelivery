@@ -1,29 +1,23 @@
-import Card from "../_components/foodcard"
-import Search from '../_components/searchbox'
+import Header from "@/app/(routes)/(home)/_components/resultheader"
 import Results from '../_components/results'
 import Pagination from '../_components/pagination'
-import { Button } from "@/components/ui/button"
-import { ChevronLeft } from 'lucide-react';
-import { ShoppingCart } from 'lucide-react';
 
-const food = [1,2,3,4,5,6,7,8,9,0,1,2,3,4]
+const food =  [
+  {tag: 'fast_food', id: '1', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
+  {tag: 'fast_food', id: '32', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
+  {tag: 'fast_food', id: '100', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.89'},
+  {tag: 'fruit', id: '2', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
+  {tag: 'vegetable', id: '3', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
+  {tag: 'dessert', id: '4', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
+  {tag: 'dessert', id: '5', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
+  {tag: 'dessert', id: '8', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
+]
 
 const page = () => {
   return (
-    <div className="pt-0 px-0">
-        <div className="fixed w-full bg-white pt-5">
-          <div className="flex w-full justify-between">
-              <Button><ChevronLeft /></Button>
-              <h2 className="text-lg font-semibold">Search Food</h2>
-              <Button><ShoppingCart /></Button>
-          </div>
-          <div className="my-8">
-            <Search />
-          </div>
-        </div>
-        <div className=" pt-40">
-          <Results results={food}/>
-        </div>
+    <div className="pt-0 px-0 h-[100dvh] flex flex-col">
+        <Header />
+        <Results results={food}/>
         <Pagination />
     </div>
   )

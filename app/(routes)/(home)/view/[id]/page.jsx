@@ -4,13 +4,17 @@ import Ppt from '../_components/properties'
 import Details from '../_components/details'
 import Ingredients from '../_components/ingredients'
 import Float from '../_components/floatingBtn'
+import Header from "../_components/header"
 
 const page = () => {
   return (
-    <div>
-        <Image src="/images/macaroni.jpg" alt='cake' height={200} width= {200} className='w-screen h-72'/>
-        <Counter number={1}/>
-        <div className='px-8'>
+    <div className='mb-32'>
+        <Header />
+        <div  className='relative h-[45dvh] aspect-square object-cover'>
+          <Image src="/images/macaroni.jpg" alt='cake' fill={true} className='object-cover'/>
+        </div>
+        <Counter number={0}/>
+        <div className='px-8 space-y-5'>
           <Ppt 
               name="Spicy Chicken Dimsum"
               price="5.99"   
@@ -19,11 +23,9 @@ const page = () => {
               minToDelivery="20-30"
           />
           <Details content="Chicken Dinmsum Recipe is the delicious evening snack dish made with minced chicken and vegetables. It is a popular Chinese dumpling recipe that is steamed and served with a spicy sauce." />
-          <Ingredients ingredients={['beef', 'potatoes']} />
+          {/* <Ingredients ingredients={['beef', 'potatoes']} /> */}
         </div>
-        <div className='flex justify-center'>
-          <Float />
-        </div>
+        <Float />
     </div>
   )
 }

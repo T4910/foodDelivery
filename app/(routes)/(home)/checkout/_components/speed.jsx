@@ -15,7 +15,7 @@ const speed = () => {
                     <h1 className="block text-xl font-medium">Delivery Method</h1>
                     <SelectValue className="text-muted-foreground" placeholder="Select Delivery..." />
                 </div>
-                <SelectTrigger className="w-10 bg-yellow-500 text-white fond-bold h-14"></SelectTrigger>
+                <SelectTrigger className="w-10 bg-primary text-white fond-bold h-14"></SelectTrigger>
             </div>
             <SelectContent >
                 <SelectItem value="normal">Standard Delivery (17-20 min)</SelectItem>
