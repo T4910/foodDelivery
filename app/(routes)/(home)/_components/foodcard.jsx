@@ -20,7 +20,7 @@ const card = ({id, image, name, description, calories, price, last, route}) => {
                 <div className="flex flex-col flex-grow mt-2">
                     <CardHeader>
                         <CardTitle>{name}</CardTitle>
-                        <CardDescription>{description}i</CardDescription>
+                        <CardDescription>{description}</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <p className="text-sm text-red-600">🔥 {calories} calories</p>

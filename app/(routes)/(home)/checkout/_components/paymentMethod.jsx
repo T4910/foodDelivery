@@ -7,12 +7,14 @@ const method = ({value, src, children}) => {
   return (
     <div className="flex justify-between items-center">
         <Label className="text-middle text-xl text-black" htmlFor={value}>
-            <div className="flex">
-                <Image href={src} alt={value} width={10} heigth={10} className="w-10 h-10"/>
-                <h1>{children}</h1>
+            <div className="flex items-center space-x-5">
+                <div className="relative size-10">
+                    <Image src={src} alt={value} fill={true}/>
+                </div>
+                <p className="font-normal">{children}</p>
             </div>
         </Label>
-        <RadioGroupItem value={value} id={value} />
+        <RadioGroupItem className="size-6" value={value} id={value} />
     </div> 
    )
 }
