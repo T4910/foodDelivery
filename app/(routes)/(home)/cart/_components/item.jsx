@@ -7,15 +7,17 @@ import { Button } from "@/components/ui/button"
 import { useSwipeable } from 'react-swipeable';
 import { useState, useEffect } from 'react'
 
-const item = ({src, name, description, price, number, isAllChecked, select: {showSelect, setShowSelect}}) => {
+const item = ({id, src, name, description, price, number, isAllChecked, checkedList: {isCheckedList, setIsCheckedList}, select: {showSelect, setShowSelect}}) => {
     let hold;
     const [ isChecked, Check ] = useState(false);
+
     const handlers = useSwipeable({
       onSwipedLeft: ({ event }) => {
         console.log('swiped left', event)
       },
 
       onTouchStartOrOnMouseDown: ({ event }) => hold = setTimeout(() => {
+          console.log('holding...')
           Check(true);
           setShowSelect(true);
       }, 1500),
@@ -23,9 +25,22 @@ const item = ({src, name, description, price, number, isAllChecked, select: {sho
     });
 
     useEffect(() => {
+      console.log('check all triggered', isAllChecked)
       Check(isAllChecked);
     }, [isAllChecked]);
  
+    useEffect(() => {
+      const isNotThere = !isCheckedList?.includes(id); // acting as a safety net
+
+      if(isChecked){
+        // add to array
+        isNotThere ? setIsCheckedList((arr) => [...arr, id]) : null;
+      } else {
+        // remove from array
+        isNotThere ? null : setIsCheckedList((arr) => arr.filter(item => item !== id))
+      }
+    }, [isChecked])
+
     return (
       <div 
         className="w-fit mx-auto relative" 

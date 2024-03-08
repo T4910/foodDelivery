@@ -17,11 +17,11 @@ import { BsBoxArrowUpRight } from "react-icons/bs";
 
 const header = () => {
     const session  = useSession();
-    const { showSelect, setShowSelect, isAllChecked, CheckAll } = useContext(SelectContext);
+    const {showSelect, ...context} = useContext(SelectContext);
 
     return (
       <div className={`flex justify-between items-center ${showSelect ? 'p-0 mb-2 h-44 box-border' : 'px-4 pt-5 mb-8'}`}>
-        {showSelect ? <Delete check={{isAllChecked, CheckAll}} setShowSelect={setShowSelect}/> : <Default session={session} />}
+        {showSelect ? <Delete allStates={context}/> : <Default session={session} />}
       </div>
     )
 }
@@ -39,7 +39,7 @@ const Default = ({ session }) => {
     )
 }
 
-const Delete = ({ setShowSelect, check: {isAllChecked, CheckAll} }) => {
+const Delete = ({allStates: { setShowSelect, isAllChecked, CheckAll, isCheckedList }}) => {
   return (
     <div className="flex justify-between size-full p-4 pb-0">
       <Button 
@@ -52,8 +52,8 @@ const Delete = ({ setShowSelect, check: {isAllChecked, CheckAll} }) => {
           <p>{isAllChecked ? "Unselect All" : "Select All"}</p>    
         </div>
       </Button>
-      {/* <Separator orientation="vertical" className="bg-black"/> */}
       <Button
+        onClick={() => console.log(isCheckedList)}
         className="hover:text-yellow-500  w-full grid place-items-center text-primary gap-2 text-md font-medium p-0 h-full rounded-none"   
         variant="outline"
       >
@@ -63,7 +63,10 @@ const Delete = ({ setShowSelect, check: {isAllChecked, CheckAll} }) => {
         </div>
       </Button>
       <Button
-        onClick={() => setShowSelect(false)}
+        onClick={() => { 
+          setShowSelect(false);
+          CheckAll(false); //not working
+        }}
         className="hover:text-yellow-500  w-full grid place-items-center text-primary gap-2 text-md font-medium p-0 h-full rounded-3xl rounded-tl-none rounded-b-none"   
         variant="outline"
       >
