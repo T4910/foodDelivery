@@ -1,6 +1,7 @@
 import Foodlist from './_components/list'
 import Actions from './_components/actions'
 import Header from './_components/header'
+import { SelectStateWrapper } from "@/app/(routes)/(home)/cart/_components/contextProvider"
 
 const food =  [
   {number: 1, tag: 'fast_food', id: '1', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
@@ -15,11 +16,11 @@ const food =  [
 
 const page = () => {
   return (
-    <div className='flex flex-col justify-between h-[100dvh] bg-slate-50'>
+      <SelectStateWrapper>
         <Header />
         <Foodlist foodlist={food}/>
         <Actions items={food}/>
-    </div>
+      </SelectStateWrapper>
   )
 }
 
