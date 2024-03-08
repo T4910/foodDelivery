@@ -1,22 +1,13 @@
-import { Button } from "@/components/ui/button"
 import Link from 'next/link'
-import Price from "../../_components/price"
-
+import Details from '@/app/(routes)/(home)/cart/_components/details'
+import { Button } from "@/components/ui/button"
 
 const actions = ({ items }) => {
-    const deliveryPrice = 20.00
   return (
-    <div className="text-xl font-middle pt-4">
-        <div className="flex justify-between mb-2">
-            <div>Items ({items.length})</div>
-            <div><Price price={items.reduce((acc, item) => acc + parseFloat(item.price), 0)} /></div>
-        </div>
-        <div className="flex justify-between mb-2">
-            <div>Total Price + Delivery</div>
-            <div><Price price={items.reduce((acc, item) => acc + parseFloat(item.price), 0) + deliveryPrice} /></div>
-        </div>
+    <div className="text-xl font-middle p-8 py-10 bg-white flex flex-col space-y-5">
+        <Details items={items}/>
         <Link href="/checkout">
-            <Button className="w-full rounded-md mt-4 py-6 fond-semibold text-2xl">Checkout</Button>
+            <Button className="w-full rounded-md py-6 fond-medium text-lg">Checkout</Button>
         </Link>
     </div>
   )

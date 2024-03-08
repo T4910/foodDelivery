@@ -7,6 +7,7 @@ const address = () => {
       <div className='flex w-full items-center justify-between p-4'>
         <div>
             <h2 className='text-lg font-medium'>Address</h2>
+            {/* Make a dialog box to get input from pencil button */}
             <p className='w-44 text-muted-foreground'>NY, United States 300 Post Street 1222422</p>
         </div>
         <Button className="bg-transparent text-black"><Pencil /></Button>

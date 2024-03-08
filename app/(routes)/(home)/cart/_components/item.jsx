@@ -1,20 +1,25 @@
 import Image from 'next/image'
-import Counter from '../../view/_components/counter'
-import Price from '../../_components/price'
+import { Checkbox } from "@/components/ui/checkbox"
+import Details from '@/app//(routes)/(home)/cart/_components/foodDetails'
+import { Trash2 } from 'lucide-react'
+import { Button } from "@/components/ui/button"
 
-const item = ({src, name, details, price, number}) => {
+const item = ({src, name, description, price, number}) => {
   return (
-    <div className='flex w-full justify-between bg-white rounded-lg'>
-        {/* <input type="radio" name="" id="" /> */}
-        <Image className='rounded-l-lg w-28 aspect-square object-fit' src="/images/cake.png" width={200} height={200}/>
-        <div>
-            <h3 className='w-fit font-semibold text-2xl'>{name}</h3>
-            <p className='w-fit text-muted-foreground'>{details}</p>
-            <div className="flex">
-                <p><Price price={price} /></p>
-                <Counter scale="scale-50" number={number}/>
-            </div>
-        </div>
+    <div className="w-fit mx-auto relative">
+      <div className='z-10 relative flex items-center mx-auto px-3 py-3 w-fit min-w-[370px] justify-between bg-white rounded-lg space-x-2'>
+          {/* <Checkbox className="mr-1"/> */}
+          <div className="relative flex-grow size-28 aspect-square">
+            <Image className="aspect-square" src={src} fill={true}/>
+          </div>
+          <Details 
+            name={name}
+            description={description}
+            price={price}
+            number={number}
+          />
+      </div>
+      <Button className="h-full pr-7 hover:bg-red-500 w-20 bg-red-200 size-full flex justify-end absolute bottom-0 right-0 rounded-lg z-0"><Trash2 className="size-8"/></Button>
     </div>
   )
 }

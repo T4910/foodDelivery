@@ -12,7 +12,7 @@ const theitems = [
 
 const page = () => {
     return (
-      <div className="flex flex-col bg-slate-50 h-[100dvh]">
+      <div className="flex flex-col bg-slate-50 h-[100dvh] w-screen">
         <Header />      
         <div className="flex flex-col flex-grow">
           <Info />

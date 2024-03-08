@@ -7,8 +7,9 @@ const list = ({ foodlist }) => {
             foodlist.map((item, index) => (
                 <Item 
                     key={index}
+                    src={item.image}
                     name={item.name}
-                    details={item.details}
+                    description={item.description}
                     price={item.price}
                     number={item.number}
                 />
