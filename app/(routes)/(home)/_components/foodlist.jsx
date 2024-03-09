@@ -2,27 +2,27 @@ import { db } from '@/lib/db'
 import FoodContent from "./foodContent" 
 import {
     Tabs,
-    TabsContent,
     TabsList,
     TabsTrigger,
   } from "@/components/ui/tabs"
 
 const categories = [
     {tag: 'fast food', name: '🍔 Fast food'},
-    {tag: 'fruit', name: '🍓 Fruit Item'},
-    {tag: 'vegetable', name: '🥦 Vegetable Item'},
-    {tag: 'dessert', name: '🍦 Desserts'}
+    {tag: 'pasta', name: '🍝 Pasta'},
+    {tag: 'swallow', name: '🍛 Swallow'},
+    {tag: 'salad', name: '🥗 Salad'},
+    {tag: 'drink', name: '🍹 Drinks'},
+    {tag: 'jollof rice', name: '🍲 Rice'},
+    {tag: 'dessert', name: '🍦 Desserts'},
 ]
 
 const foodlist = async () => {
+  const numberOfitems = 7;
+  
   const food = await db.food.findMany(
     {
-      take: 5,
-      where: {
-        tag: {
-          has: 'fast food',
-        },
-      }
+      take: numberOfitems,
+      where: { tag: { has: 'fast food' } }
     }
   );
 
