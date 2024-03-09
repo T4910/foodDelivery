@@ -7,7 +7,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils"
 
 
-const counter = ({ number, bodyStyle, btnStyle, numStyle, iconStyle }) => {
+const counter = ({ number, bodyStyle, btnStyle, numStyle, iconStyle, toZero }) => {
   const [count, setCount] = useState(number);
 
   return (
@@ -16,7 +16,7 @@ const counter = ({ number, bodyStyle, btnStyle, numStyle, iconStyle }) => {
         <Button 
             className={cn("bg-transparent py-8 pl-4 rounded-l-full hover:bg-yellow-600", btnStyle)}
             onClick={() => setCount((count) => count - 1)}
-            disabled={(count <= 1)}
+            disabled={(count <= (toZero ? 0 : 1))}
         ><Minus  className={cn("text-black", iconStyle)}/></Button>
         <div className={cn("text-3xl px-2", numStyle)}>{count}</div>
         <Button 
