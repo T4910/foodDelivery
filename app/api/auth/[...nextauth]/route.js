@@ -1,13 +1,10 @@
 import NextAuth from "next-auth"
 import { compare } from "bcryptjs"
-import { PrismaAdapter } from "@auth/db-adapter"
-// import { dbClient } from "@db/client"
+import { PrismaAdapter } from "@auth/prisma-adapter"
 // import EmailProvider from "next-auth/providers/email";
 import Crendentials from "next-auth/providers/credentials"
 import Google from "next-auth/providers/google"
 import { db } from "@/lib/db"
-
-// const prisma = new PrismaClient()
 
 export const authOptions = {
     adapter: PrismaAdapter(db),

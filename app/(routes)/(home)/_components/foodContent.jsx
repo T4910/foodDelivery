@@ -4,29 +4,32 @@ import {
     TabsList,
     TabsTrigger,
   } from "@/components/ui/tabs"
+import Card from "./foodcard"
 
-//   let food = [
-//     {tag: 'fast_food', id: '1', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-//     {tag: 'fruit', id: '2', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-//     {tag: 'vegetable', id: '3', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-//     {tag: 'dessert', id: '4', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-// ]
-
-
-const foodContent = ({ food }) => {
+const foodContent = ({ food, list }) => {
     return (
-        {
-            // food.map((result) => (
-            //     <TabsContent value="fast_food" className="flex gap-4">
-            //         {
-            //             food.map((result) => (
-            //                 (result.tag === 'fast_food') && <Card key={result.id} id={result.id} image={result.image} name={result.name} description={result.description} calories={result.calories} price={result.price}/>
-            //             ))
-            //         }
-            //     </TabsContent>  
-
-            // ))
-        }
+        <>
+            {
+                list.map((category, index) => (
+                    <TabsContent value={category} key={index} className="flex space-x-4 flex-grow">
+                        {
+                            food.filter((result) => result.tag.includes(category)).map((result, index, array) => (
+                                <Card 
+                                    last={(array.length-1 === index)} // attaches a margin to the right to the last element card
+                                    key={result.id} 
+                                    id={result.id} 
+                                    image={result.image} 
+                                    name={result.name} 
+                                    description={result.description} 
+                                    calories={result.calories} 
+                                    price={result.price}
+                                />
+                            ))
+                        }
+                    </TabsContent> 
+                ))
+            }
+        </>
     )
 }
 
