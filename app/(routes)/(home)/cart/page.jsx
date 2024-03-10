@@ -1,20 +1,33 @@
+import { SelectStateWrapper } from "@/app/(routes)/(home)/cart/_components/contextProvider"
 import Foodlist from './_components/list'
 import Actions from './_components/actions'
 import Header from './_components/header'
-import { SelectStateWrapper } from "@/app/(routes)/(home)/cart/_components/contextProvider"
+import { db } from "@/lib/db"
+import { getCldImageUrl } from 'next-cloudinary';
 
-const food =  [
-  {number: 1, tag: 'fast_food', id: '1', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-  {number: 1, tag: 'fast_food', id: '32', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-  {number: 1, tag: 'fast_food', id: '100', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.89'},
-  {number: 1, tag: 'fruit', id: '2', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-  {number: 1, tag: 'vegetable', id: '3', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-  {number: 1, tag: 'dessert', id: '4', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi with cinammon on the side', calories: '63', price: '9.80'},
-  {number: 1, tag: 'dessert', id: '5', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-  {number: 1, tag: 'dessert', id: '8', image: '/images/macaroni.jpg', name: 'Egg pasta', description: 'Spicy cherry cappi', calories: '63', price: '9.80'},
-]
 
-const page = () => {
+const page = async () => {
+  const userId = ''
+  const cartItems = await db.cartItem.findMany({where: {userId: userId}, include: {food: true}})
+  const food = cartItems.map((item) => {
+    const url = getCldImageUrl({
+      width: 200,
+      height: 200,
+      src: `foodDeliveryImages/${item.food.image}`
+    }); 
+
+    return {
+      number: item.quantity,
+      tag: item.food.tag,
+      id: item.food.id,
+      image: url,
+      name: item.food.name,
+      description: item.food.description,
+      price: item.food.price
+    }
+  })
+  console.log('Items: ', food);
+
   return (
       <SelectStateWrapper>
         <Header />

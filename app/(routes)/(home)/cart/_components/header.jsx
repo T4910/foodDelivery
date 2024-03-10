@@ -11,25 +11,29 @@ import { IoMdCheckboxOutline } from "react-icons/io"
 import { Separator } from "@/components/ui/separator"
 import { IoMdDoneAll } from "react-icons/io";
 import { BsBoxArrowUpRight } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
 
 
 
 const header = () => {
-    const session  = useSession();
     const {showSelect, ...context} = useContext(SelectContext);
 
     return (
       <div className={`flex justify-between items-center ${showSelect ? 'p-0 mb-2 h-44 box-border' : 'px-4 pt-5 mb-8'}`}>
-        {showSelect ? <Delete allStates={context}/> : <Default session={session} />}
+        {showSelect ? <Delete allStates={context}/> : <Default session={''} />}
       </div>
     )
 }
 
 const Default = ({ session }) => {
+  const router = useRouter();
+
   return (
     <>
-      <Button className="bg-transparent hover:bg-white p-4"><ChevronLeft className="size-8"/></Button>
+      <Button 
+        onClick={() => router.back()}
+        className="bg-transparent hover:bg-white p-4"><ChevronLeft className="size-8"/></Button>
       <h2 className="text-xl font-semibold">Cart Food</h2>
       <Avatar className="rounded-md size-10 mr-4">
           <AvatarImage src={session?.image} />
