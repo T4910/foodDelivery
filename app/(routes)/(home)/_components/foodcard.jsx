@@ -32,7 +32,7 @@ const card = ({id, image, name, description, calories, price, last, route}) => {
                     <CardHeader>
                         <CardTitle>{name}</CardTitle>
                         <CardDescription
-                            className=" overflow-hidden line-clamp-2 text-overflow-ellipsis w-48"
+                            className={`${(route === '/results') ? 'line-clamp-1' : 'line-clamp-2'} overflow-hidden text-overflow-ellipsis w-full`}
                         >{description}</CardDescription>
                     </CardHeader>
                     <CardContent>

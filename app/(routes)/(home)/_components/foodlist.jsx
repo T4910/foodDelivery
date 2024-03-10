@@ -17,21 +17,11 @@ const categories = [
 ]
 
 const foodlist = async () => {
-  const numberOfitems = 7;
-  
-  const food = await db.food.findMany(
-    {
-      take: numberOfitems,
-      where: { tag: { has: 'fast food' } }
-    }
-  );
-
   return (
         <div className="flex-grow mt-2">
             <Tabs defaultValue={categories[0].tag} className="w-full h-full flex flex-col">
               <TabsCategory list={categories}/> 
               <FoodContent 
-                food={food}  
                 list={categories.map((item) => item.tag)} // An array of just the tags
               />
             </Tabs>

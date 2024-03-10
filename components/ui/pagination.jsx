@@ -1,6 +1,6 @@
 import * as React from "react"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
-import Link from "next/navigation"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button";
 
@@ -31,15 +31,22 @@ PaginationItem.displayName = "PaginationItem"
 const PaginationLink = ({
   className,
   isActive,
+  href,
+  disabled,
   size = "icon",
   ...props
 }) => (
-    <a
+    <Link
       aria-current={isActive ? "page" : undefined}
+      aria-disabled={disabled}
+      href={disabled ? '' : href}
       className={cn(buttonVariants({
         variant: isActive ? "outline" : "ghost",
         size,
-      }), className)}
+      }), {
+        'bg-primary text-white': isActive,
+        ...className
+      })}
       {...props} />
 )
 PaginationLink.displayName = "PaginationLink"
