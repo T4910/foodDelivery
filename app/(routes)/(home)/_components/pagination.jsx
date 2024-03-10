@@ -8,7 +8,7 @@ import {
     PaginationPrevious,
   } from "@/components/ui/pagination"
 
-const pagination = ({info: {numberOfPages, currentPage: current, query}}) => {
+const pagination = ({info: {numberOfPages, total, query, currentPage: current}}) => {
     const currentPage = parseInt(current, 10) ?? 1;
 
     const CurrentItem = () => {
@@ -50,6 +50,8 @@ const pagination = ({info: {numberOfPages, currentPage: current, query}}) => {
             </>
         )
     }
+
+    if(total === 0) return null;
 
     return (
         <Pagination>

@@ -43,15 +43,13 @@ const page = async ({ params, searchParams }) => {
         ...searchLogic
     });
 
-    if(searchResults.length === 0) redirect(`/results?q=${query}&page=${NumberOfPages}`);
-
-    // console.log(searchResults.map((result) => result.id), totalNumResults, NumberOfPages);
-
+    
     return (
       <div className="pt-0 px-0 h-[100dvh] flex flex-col">
           <Header />
-          <Results results={searchResults}/>
+          <Results results={searchResults} />
           <Pagination info={{
+            total: totalNumResults,
             numberOfPages: NumberOfPages,
             query: query,
             currentPage: page,
