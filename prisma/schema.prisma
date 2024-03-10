@@ -13,6 +13,20 @@ enum Roles {
   CUSTOMER
 }
 
+enum DeliverySpeed {
+  SLOW // 8-10 mins 
+  NORMAL // 10-15 mins
+  FAST // 20-30 mins
+}
+
+model VerificationToken {
+  identifier String   @id @default(cuid()) @map("_id")
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
 model Account {
   id                 String  @id @default(cuid()) @map("_id")
   userId             String
@@ -47,25 +61,61 @@ model User {
   password      String?
   image         String?
   role          Roles      @default(CUSTOMER)
+  cart          CartItem[]    
   accounts      Account[]
   sessions      Session[]
+  orders        Order[]
 }
 
 
 model Food {
   id            String    @id @default(cuid()) @map("_id")
-  tag           String?
-  image         String?
   name          String?
   description   String?
+  image         String?
   calories      Float? 
   price         Float?
+  stars         Int?      @default(0)
+  tag           String[]
+
+  carts     CartItem[]
+  orders    OrderItem[]
 }
 
-model VerificationToken {
-  identifier String   @id @default(cuid()) @map("_id")
-  token      String   @unique
-  expires    DateTime
 
-  @@unique([identifier, token])
+model CartItem {
+  id            String  @id @default(cuid()) @map("_id")
+  userId        String
+  foodId        String
+  quantity      Int
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  food  Food  @relation(fields: [foodId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
+
+model Order {
+  id            String      @id @default(cuid()) @map("_id")
+  userId        String
+  orderDate     DateTime
+  deliveryDate  DateTime?
+  deliverySpeed DeliverySpeed? @default(NORMAL)
+  totalPrice    Float //including tax & delivery fee
+  items         OrderItem[]
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model OrderItem {
+  id          String   @id @default(cuid()) @map("_id")
+  foodId      String
+  orderId     String
+  quantity    Int
+  price       Float
+  delivered   DateTime?
+
+  food        Food     @relation(fields: [foodId], references: [id])
+  order       Order    @relation(fields: [orderId], references: [id])
+  @@unique([foodId])
 }
