@@ -1,3 +1,4 @@
+'use client'
 import {
     Select,
     SelectContent,
@@ -6,12 +7,21 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { ChevronDown, ChevronUp } from "lucide-react"
+import { useContext } from "react";
+import { PaymentContext } from "./paymentStateContext"
 
   
 const speed = () => {
+    const { setDeliverySpeed } = useContext(PaymentContext);
+
+    function SelectionValue(speed){
+        console.log("Selected", speed)
+        setDeliverySpeed(speed)
+    }
+
   return (
     <div className="bg-white rounded-md">
-        <Select>
+        <Select onValueChange={SelectionValue}>
             <div className="flex justify-between p-4 px-5">
                 <div>
                     <h1 className="block text-lg font-medium">Delivery method</h1>
@@ -26,7 +36,7 @@ const speed = () => {
             <SelectContent className="right-5 top-1 w-72">
                 <div>
                     <SelectItem className="text-lg" value="normal">Standard Delivery (17-20 min)</SelectItem>
-                    <SelectItem className="text-lg" value="max">Fast Delivery (8-10min)</SelectItem>
+                    <SelectItem className="text-lg" value="fast">Fast Delivery (8-10min)</SelectItem>
                     <SelectItem className="text-lg" value="slow">Take your time (20-30 min)</SelectItem>
                 </div>
             </SelectContent>

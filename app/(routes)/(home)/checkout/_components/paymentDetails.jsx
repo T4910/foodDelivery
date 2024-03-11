@@ -1,4 +1,5 @@
-import Price from "../../_components/price"
+import Price from "@/app/(routes)/(home)/_components/price"
+import CalculatedFee from "@/app/(routes)/(home)/checkout/_components/CalculatedFee";
 
 const paymentDetails = ({ items }) => {
     const deliveryPrice = 20.00;
@@ -11,11 +12,11 @@ const paymentDetails = ({ items }) => {
                 </div>
                 <div className="flex justify-between mb-2">
                     <div>Delivery Fee</div>
-                    <Price price={deliveryPrice} />
+                    <CalculatedFee />
                 </div>
                 <div className="flex justify-between mb-2">
                     <div>Total Price</div>
-                    <Price price={items.reduce((acc, item) => acc + parseFloat(item.price), 0) + deliveryPrice} />
+                    <CalculatedFee price={items.reduce((acc, item) => acc + parseFloat(item.price), 0)} />
                 </div>
         </div>
      )
