@@ -2,12 +2,12 @@
 import Link from "next/link"
 import Fields from "./loginFields"
 import { Form } from "@/components/ui/form";
+import { login }  from "@/app/actions/auth"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@/middleware/schema"
-import login from "@/app/actions/login"
 
 
 const LoginForm = () => {

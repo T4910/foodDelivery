@@ -6,13 +6,14 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { register } from "@/app/actions/register";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "@/middleware/schema"
+import { login, register }  from "@/app/actions/auth";
 
 
 const SignupForm = () => {
     const flash = useState({});
+    const [ isLoading, setLoading ] = useState(false)
     
     const form = useForm({
         resolver: zodResolver(RegisterSchema),
@@ -24,10 +25,17 @@ const SignupForm = () => {
     });
 
     const startRegister = async (values) => {
+        setLoading(true);
         console.log('reg....', form.formState.isSubmitting)
-        const response = await register(values);
+        let response = await register(values);
 
-        flash[1](response); // flash[1] --> setFlash
+        console.log('response', response)
+        if(response.status === 'success') {
+            response = await login(values);
+        } else {
+            setLoading(false);
+            flash[1](response); // flash[1] --> setFlash
+        }
     };
 
     return (
@@ -37,10 +45,14 @@ const SignupForm = () => {
                 onSubmit={form.handleSubmit(startRegister)}
             >
                 <div className="flex-grow">
-                    <Fields {...form} flash={flash}/>
+                    <Fields {...form} flash={flash} isLoading={isLoading}/>
                 </div>
                 <div>
-                    <Button type="submit" className="w-full font-bold p-6 rounded-xl">Sign up</Button>
+                    <Button 
+                        type="submit" 
+                        className="w-full font-bold p-6 rounded-xl"
+                        disabled={isLoading}
+                    >Sign up</Button>
                     <Link className="block text-center my-3" href="/login">Already have an account? Sign in</Link>
                 </div>
             </form>

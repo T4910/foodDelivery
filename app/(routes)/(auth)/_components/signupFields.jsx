@@ -15,7 +15,7 @@ import {
 
 // import PasswordField from "./password";
 
-const signUpFields = ({flash: [flash], ...form}) => {
+const signUpFields = ({flash: [flash], isLoading, ...form}) => {
     const [ showPassword, setShowPassword ] = useState(false);
     const [ showConfirmPassword, setShowConfirmPassword ] = useState(false);
 
@@ -35,6 +35,7 @@ const signUpFields = ({flash: [flash], ...form}) => {
                                 type="email"
                                 className="placeholder:text-muted m-0 px-3" 
                                 variant="login"
+                                disabled={isLoading}
                             />
                         </FormControl>
                         <FormMessage />
@@ -54,12 +55,14 @@ const signUpFields = ({flash: [flash], ...form}) => {
                                     className="placeholder:text-muted focus-visible:outline-black px-3" 
                                     type={ showPassword ? "text" : "password" } 
                                     placeholder="*******"
-                                    variant="login" 
+                                    variant="login"
+                                    disabled={isLoading} 
                                 /> 
                                 <Button 
                                     className="absolute right-0 text-muted-foreground"
                                     onClick={() => setShowPassword(!showPassword)}
                                     variant="ghost"
+                                    disabled={isLoading}
                                     type="button"
                                 >
                                     { showPassword ? <FaRegEyeSlash /> : <FaRegEye /> }
@@ -83,12 +86,14 @@ const signUpFields = ({flash: [flash], ...form}) => {
                                     className="placeholder:text-muted focus-visible:outline-black px-3" 
                                     type={ showConfirmPassword ? "text" : "password" } 
                                     placeholder="*******"
-                                    variant="login" 
+                                    variant="login"
+                                    disabled={isLoading} 
                                 /> 
                                 <Button 
                                     className="absolute right-0 text-muted-foreground"
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                     variant="ghost"
+                                    disabled={isLoading}
                                     type="button"
                                 >
                                     { showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye /> }
