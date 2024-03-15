@@ -31,13 +31,13 @@ Just the name of your cloudinary cloud account
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/T4910/foodDelivery
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd foodDelivery
 ```
 
 Install dependencies
