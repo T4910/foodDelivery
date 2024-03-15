@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Food Delivery
 
-First, run the development server:
+This is a mobile-friendly food delivery app built with Next.js 14, showcasing a clean and intuitive user interface. The app allows users to browse through various food items, search for specific dishes, view detailed information about each item, and add items to their cart for checkout.
+
+
+## Tech Stack
+
+- NextJS
+- TailwindCSS 
+- Prisma
+
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+1. `DATABASE_URL`
+A connection url to a Postgres database.
+
+2. `NEXT_PUBLIC_NEXTAUTH_SECRET`
+An string that will be used for encryption. You can run on your linux machine `openssl rand -base64 32` to get a string. 
+
+3. `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`
+Just the name of your cloudinary cloud account
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://link-to-project
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+  cd my-project
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Sync with database
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npx prisma db push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Start the server
 
-## Deploy on Vercel
+```bash
+  npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Features
+
+- Responsive design optimized for mobile devices
+- User-friendly interface with a modern and visually appealing layout
+- Login and sign-up functionality for user accounts
+- Search functionality to find specific food items
+- Detailed view of each food item images from  Cloudinary cdn
+- Cart functionality to add and remove items for checkout
+- Calculation of total price based on the items in the cart
+
+
+## Lessons Learned
+
+#### UI Development
+- Integrated and customized the Shadcn UI component library, gaining experience in working with pre-built UI components and tailoring them to fit the project's design requirements.
+- Practiced using Tailwind CSS utility classes for efficient and responsive styling, enhancing my skills in working with utility-first CSS frameworks.
+
+#### Server-side Development
+- Explored Server Actions in Next.js 13, learning how they can replace traditional API routes and simplify server-side logic.
+- Implemented authentication using the Next-Auth v5.0 beta, using React-form hooks to create interactive forms and leveraging Zod for type safety and data validation.
+
+#### Data Management
+- Utilized Prisma as the ORM (Object-Relational Mapping) tool, gaining experience in database querying, modeling, and structuring for a food delivery application.
+- Learned about React Context API and state management techniques for managing application state effectively.
+
+#### Advanced Web Concepts
+- Implemented URL state management for intuitive and shareable application state tracking.
+- Explored web concepts such as pagination, web cookies, middleware, and CDN (Content Delivery Network) for optimized performance and enhanced user experience.
+
+
+## Screenshots
+This are screenshots of the UI template I used to make them. Courtesy of Sajon Islam 
+
+![View page template](https://res.cloudinary.com/drlioaaqd/image/upload/c_crop,w_350,h_635/v1710428430/mockup/UIUX_Design.mp4_-_VLC_media_player_27_12_2023_14_48_32_fw7rff.png)
+![Results page template](https://res.cloudinary.com/drlioaaqd/image/upload/c_crop,w_350,h_635/v1710428430/mockup/UIUX_Design.mp4_-_VLC_media_player_27_12_2023_14_48_19_lhhgyj.png)
+
+![Main page template](https://res.cloudinary.com/drlioaaqd/image/upload/c_crop,w_350,h_635/v1710428428/mockup/UIUX_Design.mp4_-_VLC_media_player_27_12_2023_14_48_10_dnjnoq.png)
+![Checkout page template](https://res.cloudinary.com/drlioaaqd/image/upload/c_crop,w_350,h_635/v1710428428/mockup/UIUX_Design.mp4_-_VLC_media_player_27_12_2023_14_49_02_aggizf.png)
+![Login page template](https://res.cloudinary.com/drlioaaqd/image/upload/c_crop,w_350,h_635/v1710428429/mockup/UIUX_Design.mp4_-_VLC_media_player_27_12_2023_14_48_00_yjkqua.png)
+![Cart page template](https://res.cloudinary.com/drlioaaqd/image/upload/c_crop,w_350,h_635/v1710428430/mockup/UIUX_Design.mp4_-_VLC_media_player_27_12_2023_14_48_41_gvqpho.png)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
